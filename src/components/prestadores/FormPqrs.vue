@@ -5,6 +5,12 @@
           <div class="col-md-6">
             <h5 class="push-left text-uppercase mt-4 pull-rigth">Pijaos Salud EPSI</h5>
           </div>
+          <div class="col-md-3 offset-md-3">
+            <!-- <img src="<?= base_url(); ?>/img/logo.png"  width="60px;"> -->
+            <router-link class="btn rounded-pill btn-primary btn-sm mt-4 text-uppercase" to="/buscarpqrs">
+              Consulta tu pqrd
+            </router-link>
+          </div>
         </div>
         <hr>
         <p>Este formulario está destinado para presentar PQRD y Solicitudes de Información relacionados con la prestación de servicios de salud.</p>
@@ -14,11 +20,26 @@
         <p> ¿ Es usted el paciente o afectado ? </p>
         <div class="was-validated">
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="flexRadioDefault1" name="paciente_rad" value="1" required>
+            <input
+              type="radio"
+              class="form-check-input"
+              id="flexRadioDefault1"
+              name="paciente_rad"
+              value="1" required
+              v-model="paciente_rad"
+            >
             <label class="form-check-label" for="validationFormCheck2">Si</label>
           </div>
           <div class="form-check mb-3">
-            <input type="radio" class="form-check-input" id="flexRadioDefault2" name="paciente_rad" value="0" required>
+            <input
+              type="radio"
+              class="form-check-input"
+              id="flexRadioDefault2"
+              name="paciente_rad"
+              value="0"
+              required
+              v-model="paciente_rad"
+            >
             <label class="form-check-label" for="validationFormCheck3">No</label>
           <div class="invalid-feedback">Seleccione</div>
         </div>
@@ -35,10 +56,15 @@
                         class="form-control form-control-sm"
                         required aria-label=""
                         v-model="tpdocumento"
+                        @change="mostrarExpedicion"
                       >
                        <option value="">SELECCIONE</option>
-                       <option v-for="tpdocumento in tpdocumentos"  v-bind:value="{ id: tpdocumento.TIP_DOCUMENTO, text: tpdocumento.NOM_DOCUMENTO }">
-                          {{ tpdocumento.NOM_DOCUMENTO }}
+                       <option
+                         v-for="(tpdocumento, index) in tpdocumentos"
+                         :key="index"
+                         v-bind:value="{ id: tpdocumento.TIP_DOCUMENTO, text: tpdocumento.NOM_DOCUMENTO }"
+                       >
+                         {{ tpdocumento.NOM_DOCUMENTO }}
                        </option>
                      </select>
                    <div class="invalid-feedback">Ingrese el tipo de documento</div>
@@ -60,9 +86,9 @@
                  </div>
                </div>
              </div>
-             <div class="col-md-3 fexpedicion"  hidden>
+             <div class="col-md-4 fexpedicion"  hidden>
                  <div class="form-group">
-                   <label>Fecha de expedición de su documento </label>
+                   <label>Expedición de su documento </label>
                    <input
                      type="date"
                      id="expedicion"
@@ -116,7 +142,7 @@
          </div>
          <div class="col-md-3">
            <div class="form-group">
-             <label>Segundo  Apellido</label>
+             <label>Segundo Apellido</label>
              <input
                type="text"
                id="sapellido"
@@ -135,6 +161,7 @@
                 id="nacimiento"
                 class="form-control form-control-sm"
                 v-model="nacimiento"
+                @blur.prevent="calcularEdad"
               >
             </div>
           </div>
@@ -154,11 +181,25 @@
               <label>Sexo *</label>
               <br>
               <div class="form-check form-check-inline">
-                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sexo" value="M">
+                   <input
+                     class="form-check-input"
+                     type="radio"
+                     name="inlineRadioOptions"
+                     id="sexo"
+                     value="M"
+                     v-model="sexo"
+                   >
                    <label class="form-check-label" for="inlineRadio1">Masculino</label>
                  </div>
                    <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sexo" value="F">
+                     <input
+                       class="form-check-input"
+                       type="radio"
+                       name="inlineRadioOptions"
+                       id="sexo"
+                       value="F"
+                       v-model="sexo"
+                     >
                      <label class="form-check-label" for="inlineRadio2">Femenino</label>
                    </div>
                  </div>
@@ -169,15 +210,19 @@
                  <div class="was-validated">
                    <div class="form-group">
                      <label>Población Especial *</label>
-                     <select 
+                     <select
                        id="poblacion"
                        class="form-control"
                        required aria-label=""
                        v-model="poblacionespecial"
                       >
                        <option value="" >SELECCIONE</option>
-                       <option v-for="poblacionespecial in poblacionespeciales" v-bind:value="{id: poblacionespecial.CONSECUTIVO, text: poblacionespecial.NOMPOBLACION}">
-                         {{ poblacionespecial.NOMPOBLACION }}   
+                       <option
+                         v-for="(poblacionespecial, index) in poblacionespeciales"
+                         :key="index"
+                         v-bind:value="{id: poblacionespecial.CONSECUTIVO, text: poblacionespecial.NOMPOBLACION}"
+                       >
+                         {{ poblacionespecial.NOMPOBLACION }}
                        </option>
                      </select>
                    <div class="invalid-feedback">Ingrese el tipo de población</div>
@@ -193,24 +238,31 @@
                        class="form-control"
                        required aria-label=""
                        v-model="grupoetnico"
+                       @change="mostrarResguardo"
                      >
                        <option value="">SELECCIONE</option>
-                       <option v-for="grupoetnico in grupoetnicos" v-bind="{id: grupoetnico.CONSECUTIVO, text: grupoetnico.NOMBRE }">{{ grupoetnico.NOMBRE }}</option>
+                       <option
+                         v-for="(grupoetnico, index) in grupoetnicos"
+                         :key="index"
+                         v-bind:value="{id: grupoetnico.CONSECUTIVO, text: grupoetnico.NOMBRE }"
+                       >
+                         {{ grupoetnico.NOMBRE }}
+                       </option>
                      </select>
                    <div class="invalid-feedback">Ingrese el grupo étnico</div>
                  </div>
                </div>
              </div>
-             <div class="col-md-3" id="cont-resguardo" >
+             <div class="col-md-3" id="cont-resguardo" hidden>
                <label>Resguardo</label>
                <input
                  type="text"
                  class="form-control"
                  id="resguardo"
-                 v-model="resuardo"
+                 v-model="resguardo"
                >
              </div>
-             <div class="col-md-3" id="cont-comunidad" >
+             <div class="col-md-3" id="cont-comunidad" hidden>
                <label>Comunidad</label>
                <input
                  type="text"
@@ -244,7 +296,11 @@
                     v-model="departamento"
                   >
                     <option value="">SELECCIONAR</option>
-                    <option v-for="departamento in departamentos" v-bind="{ id: departamento.COD_DEPARTAMENTO, text: departamento.NOM_DEPARTAMENTO }">
+                    <option
+                      v-for="(departamento, index) in departamentos"
+                      :key="index"
+                      v-bind:value="{id: departamento.COD_DEPARTAMENTO, text: departamento.NOM_DEPARTAMENTO }"
+                    >
                       {{departamento.NOM_DEPARTAMENTO}}
                     </option>
                   </select>
@@ -259,7 +315,13 @@
                     v-model="municipio"
                   >
                     <option value="">SELECCIONAR</option>
-                    <option v-for="municipio in municipios" v-bind="{ id: municipio.COD_CIUDAD, text: municipio.NOM_CIUDAD }">{{ municipio.NOM_CIUDAD }}</option>
+                    <option
+                      v-for="(municipio, index) in municipios"
+                      :key="index"
+                      v-bind:value="{id: municipio.COD_CIUDAD, text: municipio.NOM_CIUDAD }"
+                    >
+                      {{municipio.NOM_CIUDAD }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -272,7 +334,11 @@
                     v-model="zona"
                   >
                     <option value="">SELECCIONE</option>
-                    <option v-for="zona in zonas" v-bind="{ id: zona.COD_ZONA, text: zona.NOM_ZONA }">
+                    <option
+                      v-for="(zona, index) in zonas"
+                      :key="index"
+                      v-bind:value="{id: zona.COD_ZONA, text: zona.NOM_ZONA }"
+                    >
                       {{zona.NOM_ZONA}}
                     </option>
                   </select>
@@ -352,7 +418,12 @@
                     v-model="area"
                   >
                     <option value="">SELECCIONE</option>
-                    <option v-for="area in areas" v-bind="{ id: area.NOM_AREA, text: area.NOM_AREA }">
+                    <option
+                      v-for="(area, index) in areas"
+                      :key="index"
+                      v-bind:value="{ id: area.COD_AREA, text: area.NOM_AREA }"
+
+                    >
                       {{area.NOM_AREA}}
                     </option>
                   </select>
@@ -368,7 +439,13 @@
                     v-model="prestador"
                   >
                     <option value="">SELECCIONE</option>
-                    <option v-for="prestador in prestadores" v-bind="{ id: prestador.NIT_PRESTADOR, text: prestador.NOM_PRESTADOR }">{{ prestador.NOM_PRESTADOR}}</option>
+                    <option
+                      v-for="(prestador, index) in prestadores"
+                      :key="index"
+                      v-bind:value="{id: prestador.NIT_PRESTADOR, text: prestador.NOM_PRESTADOR }"
+                    >
+                      {{prestador.NOM_PRESTADOR}}
+                    </option>
                   </select>
                 </div>
               </diV>
@@ -396,17 +473,14 @@
             <div class="row mt-2">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="exampleFormControlFile1">Adjuntar soporte</label>
+                  <label>Adjuntar soporte</label>
                   <input
                     type="file"
                     class="form-control-file"
-                    id="exampleFormControlFile1"
-                    multiple="multiple"
+                    id="soporte"
                   >
                 </div>
               </div>
-            </div>
-            <div class="msjsuccess">
             </div>
               <p> <span class=""> <strong> AUTORIZACIÓN PREVIA PARA EL TRATAMIENTO DE DATOS PERSONALES Y DATOS PERSONALES SENSIBLES </strong></span>
                 Manifiesto de manera clara, expresa, libre, inequívoca y espontánea que le otorgo a PIJAOS SALUD EPSI en su calidad de RESPONSABLE
@@ -414,22 +488,52 @@
                 en general para tratar los DATOS PERSONALES, DATOS PERSONALES SENSIBLES y demás información susceptible de tratamiento, registrada
                 a mi nombre y/o de mi grupo familiar en sus Bases de Datos, con la finalidad de realizar las actividades propias del aseguramiento
                 en salud y en los términos previstos en su POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES  disponible en su página web www.pijaossalud.com
-                a través del link <a href=" https://www.pijaossalud.com/tratamiento-de-datos-personales/">tratamiento de datos personales</a> todo lo cual conforme
+                a través del link <a target="_blank" href=" https://www.pijaossalud.com/tratamiento-de-datos-personales/">tratamiento de datos personales</a> todo lo cual conforme
                 lo establecido en la Ley Estatutaria 1581 de 2012 y demás normas que la sustituyan, adicionen, reglamenten, complementen o modifiquen. La
                 presente autorización la he suministrado de forma voluntaria. Al hacer clic en el botón ENVIAR, usted acepta la remisión de la
                 PQRD a Pijaos Salud EPSI. En la opción SEGUIMIENTO DE PQRD podrá verificar el estado de la respuesta.
               </p>
             <div class="was-validated">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="no" id="flexCheckDefault" name="flexCheckDefault" required>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="no"
+                  id="terminos"
+                  name="terminos"
+                  required
+                  v-model="terminos"
+                  @change="aceptarTerminos"
+                >
                 <label class="form-check-label" for="flexCheckDefault">
                   Acepto los términos y condiciones
                 </label>
               <div class="invalid-feedback">Acepta los términos y condiciones</div>
             </div>
           </div>
-            <button class="btn  btn-primary btn-lg checkterminos  mt-5" @click.prevent="crearPqrs()" >Enviar</button>
+            <button class="btn  btn-primary btn-lg checkterminos mt-5" @click.prevent="crearPqrs()" id="enviar" disabled>Enviar</button>
             <!-- <button class="btn btn-outline-primary btn-lg mt-5" onclick="cargarArchivoDrive();" type="submit">Borrar</button> -->
+          </div>
+          <div class="modal" tabindex="-1" id="modal-notificacion">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-success text-uppercase">Se ha creado correctamente</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                           x
+                         </button>
+                    -->
+                </div>
+                <div class="modal-body">
+                  <p class="text-center msjsuccess">
+
+                  </p>
+                </div>
+                <div class="modal-footer text-capitalize">
+                  <i class="fas fa-home"></i><small>Pijaos salud EPS - Indigena</small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 </template>
@@ -450,35 +554,38 @@ export default {
      areas: [],
      prestadores: [],
      //
-     tpdocumento: "",
-     documento: "",
-     expedicion: "",
-     pnombre: "",
-     snombre: "",
-     papellido: "",
-     sapellido: "",
-     nacimiento: "",
-     edad: "",
-     poblacionespecial: "",
-     grupoetnico: "",
-     resuardo: "",
-     comunidad: "",
-     pais: "",
-     departamento: "",
-     municipio: "",
-     zona: "",
-     direccion: "",
-     celular: "",
-     telefono: "",
-     correo: "",
-     area: "",
-     prestador: "",
-     descripcion: "",
-     
+     paciente_rad: '',
+     tpdocumento: '',
+     documento: '',
+     expedicion: '',
+     pnombre: '',
+     snombre: '',
+     papellido: '',
+     sapellido: '',
+     nacimiento: '',
+     edad: '',
+     sexo: '',
+     poblacionespecial: '',
+     grupoetnico: '',
+     resguardo: '',
+     comunidad: '',
+     pais: '',
+     departamento: '',
+     municipio: '',
+     zona: '',
+     direccion: '',
+     celular: '',
+     telefono: '',
+     correo: '',
+     area: '',
+     prestador: '',
+     descripcion: '',
+     terminos: ''
+
     }
   },
   methods: {
-    //NETODOS QUE SE ENCARGAN DE LISTAR EN LOS INPUTS LA INFORMACION
+    //METODOS QUE SE ENCARGAN DE LISTAR EN LOS INPUTS LA INFORMACION
     getTpdocumentos: function () {
       let url =  baseurl + "/tipodocumentos";
       this.axios.get(url).then(response => {
@@ -527,34 +634,99 @@ export default {
         this.prestadores = response.data ;
       });
     },
+
     //METODOS DE FUNCIONALIDAD DE LA APLICACION
+    mostrarExpedicion() {
+      if (this.tpdocumento.id == "CC") {
+        $(".fexpedicion").attr("hidden", false);
+      }
+      else {
+        $(".fexpedicion").attr("hidden", true);
+        this.expedicion = "";
+      }
+    },
     buscarAfiliado: function () {
       let tpdocumento = this.tpdocumento.id,
-          documento = this.documento,
-          url = baseurl + "/buscar/"+tpdocumento+"/"+documento ;
+      documento = this.documento,
+      url = baseurl + "/buscar/"+tpdocumento+"/"+documento ;
       var spinner = document.getElementById("loading");
-          spinner.removeAttribute("hidden");
+      spinner.removeAttribute("hidden");
 
-      this.axios.get(url)
-      .then(function (response){
-        if (response.data == "error") {
-          spinner.setAttribute("hidden", true);
-        }
-        else {
-          spinner.setAttribute("hidden", true);
-          // this.pnombre = "hola";
-          //this.papellido = response.data.usuario[0].PRI_APELLIDO;
-          //this.sapellido = response.data.usuario[0].SEG_APELLIDO;
-          //console.log(response.data.usuario[0]);
-        }
+      this.axios.get(url,)
+      .then((response) => {
+        spinner.setAttribute("hidden", true);
+        let fecha = response.data.usuario[0].FEC_NACIMIENTO.split(" ");
+        this.pnombre = response.data.usuario[0].PRI_NOMBRE;
+        this.snombre = response.data.usuario[0].NOM_NOMBRE;
+        this.papellido = response.data.usuario[0].PRI_APELLIDO;
+        this.sapellido = response.data.usuario[0].SEG_APELLIDO;
+        this.nacimiento = fecha[0];
+        this.sexo = response.data.usuario[0].SEXO;
       })
-      .catch(function(response) {
-        console.log(response);
-      }) 
+      .catch((response) => {
+      });
+    },
+    calcularEdad: function () {
+      let fecha = document.getElementById("nacimiento").value;
+      let hoy = new Date();
+      let cumpleanos =  new Date(fecha);
+      let edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      let m = hoy.getMonth() - cumpleanos.getMonth();
+        if(m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+          edad --;
+        }
+        this.edad = edad;
+    },
+    mostrarResguardo: function () {
+      if(this.grupoetnico.id == 4) {
+        $("#cont-resguardo").attr("hidden", false);
+        $("#cont-comunidad").attr("hidden", false);
+      }else {
+         $("#cont-resguardo").attr("hidden", true);
+         $("#cont-comunidad").attr("hidden", true);
+      }
+    },
+    aceptarTerminos: function() {
+      if(this.terminos == true){
+        $("#enviar").attr("disabled", false);
+      }
+      else {
+        $("#enviar").attr("disabled", true);
+      }
     },
     crearPqrs: function () {
-      let url = baseurl + "/crearpqrs";
-
+      let url = baseurl + "/crearpqrs",
+      //RECUPERA TODO LO QUE VIENE EN EL EL INPUT FILE DEL DOCUMENTO
+      archivo = document.getElementById("soporte"),
+      formdata = new FormData();
+      formdata.append('archivo', archivo.files[0]);
+      formdata.append('paciente_rad', this.paciente_rad);
+      formdata.append('tpdocumento', this.tpdocumento.id);
+      formdata.append('documento', this.documento);
+      formdata.append('expedicion', this.expedicion);
+      formdata.append('pnombre', this.pnombre);
+      formdata.append('snombre', this.snombre);
+      formdata.append('papellido', this.papellido);
+      formdata.append('sapellido', this.sapellido);
+      formdata.append('nacimiento', this.nacimiento);
+      formdata.append('edad', this.edad);
+      formdata.append('sexo', this.sexo);
+      formdata.append('poblacionespecial', this.poblacionespecial.id);
+      formdata.append('grupoetnico', this.grupoetnico.id);
+      formdata.append('resguardo', this.resguardo);
+      formdata.append('comunidad', this.comunidad);
+      formdata.append('pais', this.pais);
+      formdata.append('departamento', this.departamento.id);
+      formdata.append('municipio', this.municipio.id);
+      formdata.append('zona', this.zona.id);
+      formdata.append('direccion', this.direccion);
+      formdata.append('celular', this.celular);
+      formdata.append('telefono', this.telefono);
+      formdata.append('correo', this.correo);
+      formdata.append('area', this.area.text);
+      formdata.append('prestador', this.prestador.id);
+      formdata.append('descripcion', this.descripcion);
+      //VALIDA QUE LOS CAMPOS REQUERIDOS NO ESTEN VACIOS
       if(this.tpdocumento ==  ""){
         document.getElementById("tpdocumento").focus();
       }
@@ -567,7 +739,6 @@ export default {
       else if(this.papellido ==  ""){
         document.getElementById("papellido").focus();
       }
-     
       else if(this.nacimiento ==  ""){
         document.getElementById("nacimiento").focus();
       }
@@ -599,11 +770,11 @@ export default {
         document.getElementById("descripcion").focus();
       }
       else {
-        this.axios.post(url, {
-
-        })
+        this.axios.post(url, formdata, {'content-type': 'multipart/form-data'})
         .then(function (response) {
-
+          let respuesta = 'Solicitud registrada con exito su solicitud ha sido de creada exitosamente con el radicado N° <br><br> <span class="text-primary h2">'+response.data.consecutivo+'</span>';
+          $(".msjsuccess").html(respuesta);
+          $("#modal-notificacion").modal("show");
         })
         .catch(function (error) {
 
@@ -620,8 +791,8 @@ export default {
     this.getZonas();
     this.getAreas();
     this.getPrestadores();
-    
-  },
+    this.pais = "COLOMBIA";
+  }
 }
 </script>
 
