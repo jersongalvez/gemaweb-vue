@@ -23,7 +23,7 @@
             <input
               type="radio"
               class="form-check-input"
-              id="flexRadioDefault1"
+              id="paciente_rad"
               name="paciente_rad"
               value="1" required
               v-model="paciente_rad"
@@ -41,7 +41,7 @@
               v-model="paciente_rad"
             >
             <label class="form-check-label" for="validationFormCheck3">No</label>
-          <div class="invalid-feedback">Seleccione</div>
+          <div class="invalid-feedback">Seleccione si usted es el paciente afectado</div>
         </div>
        </div>
        <h6>Información del paciente</h6>
@@ -726,8 +726,12 @@ export default {
       formdata.append('area', this.area.text);
       formdata.append('prestador', this.prestador.id);
       formdata.append('descripcion', this.descripcion);
+      $("#enviar").attr("disabled", true);
       //VALIDA QUE LOS CAMPOS REQUERIDOS NO ESTEN VACIOS
-      if(this.tpdocumento ==  ""){
+      if(this.sexo == "") {
+        document.getElementById("paciente_rad").focus();
+      }
+      else if(this.tpdocumento ==  ""){
         document.getElementById("tpdocumento").focus();
       }
       else if(this.documento ==  ""){
@@ -775,6 +779,7 @@ export default {
           let respuesta = 'Solicitud registrada con exito su solicitud ha sido de creada exitosamente con el radicado N° <br><br> <span class="text-primary h2">'+response.data.consecutivo+'</span>';
           $(".msjsuccess").html(respuesta);
           $("#modal-notificacion").modal("show");
+          $("#enviar").attr("disabled", false);
         })
         .catch(function (error) {
 

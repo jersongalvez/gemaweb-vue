@@ -235,7 +235,7 @@ export default {
         table.html(respuesta);
         $("#estado1").html(response.data.pqrs[0].DES_EST_QUEJA);
         console.log(response.data.pqrs[0]);
-        let pdf = '<a target="blank" href="" class="text-danger text-uppercase"><i class="fas fa-file-pdf fa-2x"></i> Descargar archivo de respuesta</a>';
+        let pdf = '<a target="blank" href="'+response.data.pqrs[0].DOCUMENTO_RESPUESTA+'" class="text-danger text-uppercase"><i class="fas fa-file-pdf fa-2x"></i> Descargar archivo de respuesta</a>';
         $("#content").html(pdf);
         $("#container-pdf").attr("hidden", false);
       })
