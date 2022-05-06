@@ -188,7 +188,7 @@
         en general para tratar los DATOS PERSONALES, DATOS PERSONALES SENSIBLES y demás información susceptible de tratamiento, registrada
         a mi nombre y/o de mi grupo familiar en sus Bases de Datos, con la finalidad de realizar las actividades propias del aseguramiento
         en salud y en los términos previstos en su POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES  disponible en
-        su página web www.pijaossalud.com a través del link <a href="https://www.pijaossalud.com/tratamiento-de-datos-personales/">tratamiento de datos personales</a> 
+        su página web www.pijaossalud.com a través del link <a target="_blank" href="https://www.pijaossalud.com/tratamiento-de-datos-personales/">tratamiento de datos personales</a> 
         todo lo cual conforme lo establecido en la Ley Estatutaria 1581 de 2012 y demás normas que la sustituyan, adicionen, reglamenten,
         complementen o modifiquen. La presente autorización la he suministrado de forma voluntaria. Al hacer clic en el botón ENVIAR, usted
         acepta la remisión de la PQRD a Pijaos Salud EPSI. En la opción SEGUIMIENTO DE PQRD podrá verificar el estado de la respuesta.

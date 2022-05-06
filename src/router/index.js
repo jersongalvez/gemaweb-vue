@@ -9,6 +9,9 @@ export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    /****************************
+      RUTAS PARA LOS PRESTADORES
+    *****************************/
     {
       path: '/pqrs',
       name: 'Pqrs',
@@ -19,5 +22,9 @@ export default new Router({
       name: 'Buscarpqrs',
       component: BuscarPqrs
     },
+
+    /****************************
+      RUTAS PARA LA ADMINISTRACION
+    *****************************/
   ]
 })
