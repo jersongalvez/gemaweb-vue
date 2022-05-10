@@ -7,8 +7,8 @@
         <div class="col-md-5">
           <h4 class="text-uppercase">Consulta tu Solicitud </h4>
         </div>
-        <div class="col-md-2 offset-md-5 text-danger ">
-          <h5 class="font-weight-bold text-uppercase" id="estado1"></h5>
+        <div class="col-md-2 offset-md-5 text-danger">
+          <h3 class="font-weight-bold text-uppercase text-danger" id="estado1"></h3>
         </div>
       </div>
       <hr>

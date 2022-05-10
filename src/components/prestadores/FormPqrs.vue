@@ -17,6 +17,29 @@
         <div class="alert alert-success mt-3" role="alert">
           Los campos con * son de diligenciamiento obligatorio
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="was-validated">
+              <div class="form-group">
+                <label>Tipo de Solicitud</label>
+                <select
+                  class="form-control form-control-sm text-uppercase"
+                  required aria-label=""
+                  id="pqrs"
+                  v-model="pqrs"
+                >
+                  <option value="">seleccione</option>
+                  <option value="PETICION">Petición</option>
+                  <option value="QUEJA">Queja</option>
+                  <option value="RECLAMO">Reclamo</option>
+                  <option value="SUGERENCIA">Sugerencia</option>
+                  <option value="FELICITACION">Felicitación</option>
+                </select>
+                <div class="invalid-feedback">Ingrese el tipo de petición</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <p> ¿ Es usted el paciente o afectado ? </p>
         <div class="was-validated">
           <div class="form-check">
@@ -584,6 +607,7 @@ export default {
      areas: [],
      prestadores: [],
      //
+     pqrs: '',
      paciente_rad: '',
      tpdocumento: '',
      documento: '',
@@ -739,7 +763,8 @@ export default {
     enviarEmail: function () {
       let url1 = baseurl + "/notificaciones";
       this.axios.post(url1, {
-          nombre: this.pnombre + ' ' + this.snombre + ' ' + this.papellido + '' + this.sapellido,
+          pqrs: this.pqrs,
+          nombre: this.pnombre + ' ' + this.snombre + ' ' + this.papellido + ' ' + this.sapellido,
           tpdocumento: this.tpdocumento.id,
           documento: this.documento,
           telefono: this.telefono + ' - ' +this.celular,
