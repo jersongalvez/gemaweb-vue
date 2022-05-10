@@ -12,7 +12,7 @@
         </div>
       </div>
       <hr>
-      <p>Este formulario está destinado para consultar su PQRD, relacionados con la prestación de servicios de salud.</p>
+      <h3>En esta sección podras hacer la consulta de estado de tu PQRS pertinente expuesta a la IPS o EPSI</h3>
       <div class="row mt-5">
       <div class="col-md-3">
         <div class="form-group">
@@ -170,7 +170,7 @@
         <div class="col-md-12">
           <table class="table table-stripped table-hover">
             <thead>
-              <th>Respuestas a la solicitud</th>
+              <th class="h1 lead">Respuestas a la solicitud</th>
             </thead>
             <tbody id="consulta-result" class="text-uppercase">
             </tbody>

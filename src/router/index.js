@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+//IMPORTACION DE ARCHIVOS PARA PRESTADORES
 import Pqrs from '../views/prestadores/Pqrs'
 import BuscarPqrs from '../views/prestadores/BuscarPqrs'
-
+//IMPORTACION DE ARCHIVOS PARA LA PLATAFORMA GEMAWEB
+import Login from '../views/gemaweb/Login'
+import Inicio from '../views/gemaweb/Inicio'
 Vue.use(Router)
 
 export default new Router({
@@ -26,5 +29,15 @@ export default new Router({
     /****************************
       RUTAS PARA LA ADMINISTRACION
     *****************************/
+      {
+        path: '/gemaweb/login',
+        name: 'Login',
+        component: Login
+      },
+      {
+        path: '/gemaweb/inicio',
+        name: 'Inicio',
+        component: Inicio
+      },
   ]
 })

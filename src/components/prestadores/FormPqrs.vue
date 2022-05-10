@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h5 class="push-left text-uppercase mt-4 pull-rigth">Pijaos Salud EPSI</h5>
+            <h4 class="push-left text-uppercase mt-4 pull-rigth">Pijaos Salud EPSI</h4>
           </div>
           <div class="col-md-3 offset-md-3">
             <!-- <img src="<?= base_url(); ?>/img/logo.png"  width="60px;"> -->
@@ -13,8 +13,8 @@
           </div>
         </div>
         <hr>
-        <p>Este formulario está destinado para presentar PQRD y Solicitudes de Información relacionados con la prestación de servicios de salud.</p>
-        <div class="alert alert-success" role="alert">
+        <h3>Este formulario está destinado para presentar PQRD  relacionados con la prestación de servicios de salud.</h3>
+        <div class="alert alert-success mt-3" role="alert">
           Los campos con * son de diligenciamiento obligatorio
         </div>
         <p> ¿ Es usted el paciente o afectado ? </p>
@@ -404,11 +404,42 @@
               </div>
              </div>
             </div>
-            <h6 class="mt-2">Detalle de la petición</h6>
+            <h3 class="mt-2">Detalle de la petición</h3>
             <hr>
             <p>Permítanos conocer más sobre  la IPS o área de la EPSI  a la cual quiere formular su PQRD</p>
+            <br>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      value="ips"
+                      v-model="checkips"
+                      @change="validarIps"
+                    />
+                      <label class="form-check-label">
+                        IPS
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      value="eps"
+                      v-model="ckeckeps"
+                      @change="validarEps"
+                      />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Pijaos Salud
+                        </label>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-9 eps" hidden>
                 <div class="form-group">
                   <label>Área  a la que remite la PQRD</label>
                   <select
@@ -422,14 +453,13 @@
                       v-for="(area, index) in areas"
                       :key="index"
                       v-bind:value="{ id: area.COD_AREA, text: area.NOM_AREA }"
-
                     >
                       {{area.NOM_AREA}}
                     </option>
                   </select>
                 </div>
-              </diV>
-              <div class="col-md-6">
+              </div>
+              <div class="col-md-9 ips" hidden>
                 <div class="form-group">
                   <label>Prestador de servicio</label>
                   <select
@@ -448,7 +478,7 @@
                     </option>
                   </select>
                 </div>
-              </diV>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -580,7 +610,9 @@ export default {
      area: '',
      prestador: '',
      descripcion: '',
-     terminos: ''
+     terminos: '',
+     checkeps: '',
+     checkips: ''
 
     }
   },
@@ -694,6 +726,30 @@ export default {
         $("#enviar").attr("disabled", true);
       }
     },
+    validarIps: function () {
+      this.checkeps  = "";
+      $(".eps").attr("hidden", true);
+      $(".ips").attr("hidden", false);
+    },
+    validarEps: function () {
+      this.checkips  = "";
+      $(".ips").attr("hidden", true);
+      $(".eps").attr("hidden", false);
+    },
+    enviarEmail: function () {
+      let url1 = baseurl + "/notificaciones";
+      this.axios.post(url1, {
+          nombre: this.pnombre + ' ' + this.snombre + ' ' + this.papellido + '' + this.sapellido,
+          tpdocumento: this.tpdocumento.id,
+          documento: this.documento,
+          telefono: this.telefono + ' - ' +this.celular,
+          correo: this.correo,
+          mensaje: this.descripcion
+      })
+      .then(response => {
+
+      })
+    },
     crearPqrs: function () {
       let url = baseurl + "/crearpqrs",
       //RECUPERA TODO LO QUE VIENE EN EL EL INPUT FILE DEL DOCUMENTO
@@ -724,8 +780,9 @@ export default {
       formdata.append('telefono', this.telefono);
       formdata.append('correo', this.correo);
       formdata.append('area', this.area.text);
-      formdata.append('prestador', this.prestador.id);
+      formdata.append('ips', this.prestador.id);
       formdata.append('descripcion', this.descripcion);
+      this.enviarEmail();
       $("#enviar").attr("disabled", true);
       //VALIDA QUE LOS CAMPOS REQUERIDOS NO ESTEN VACIOS
       if(this.sexo == "") {
@@ -776,6 +833,7 @@ export default {
       else {
         this.axios.post(url, formdata, {'content-type': 'multipart/form-data'})
         .then(function (response) {
+
           let respuesta = 'Solicitud registrada con exito su solicitud ha sido de creada exitosamente con el radicado N° <br><br> <span class="text-primary h2">'+response.data.consecutivo+'</span>';
           $(".msjsuccess").html(respuesta);
           $("#modal-notificacion").modal("show");
@@ -800,8 +858,6 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
 
 </style>
