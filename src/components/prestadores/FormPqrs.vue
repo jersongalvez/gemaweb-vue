@@ -564,7 +564,16 @@
               <div class="invalid-feedback">Acepta los términos y condiciones</div>
             </div>
           </div>
-            <button class="btn  btn-primary btn-lg checkterminos mt-5" @click.prevent="crearPqrs()" id="enviar" disabled>Enviar</button>
+            <button
+              class="btn btn-primary btn-lg checkterminos mt-5"
+              @click.prevent="crearPqrs()"
+              id="enviar"
+              disabled
+            >
+              Enviar
+            </button>
+            <div class="spinner-border text-primary cargando" role="status" hidden>
+            </div>
             <!-- <button class="btn btn-outline-primary btn-lg mt-5" onclick="cargarArchivoDrive();" type="submit">Borrar</button> -->
           </div>
           <div class="modal" tabindex="-1" id="modal-notificacion">
@@ -781,6 +790,7 @@ export default {
       archivo = document.getElementById("soporte"),
       formdata = new FormData();
       formdata.append('archivo', archivo.files[0]);
+      formdata.append('pqrs', this.pqrs);
       formdata.append('paciente_rad', this.paciente_rad);
       formdata.append('tpdocumento', this.tpdocumento.id);
       formdata.append('documento', this.documento);
@@ -807,10 +817,12 @@ export default {
       formdata.append('area', this.area.text);
       formdata.append('ips', this.prestador.id);
       formdata.append('descripcion', this.descripcion);
-      this.enviarEmail();
-      $("#enviar").attr("disabled", true);
+     
       //VALIDA QUE LOS CAMPOS REQUERIDOS NO ESTEN VACIOS
-      if(this.sexo == "") {
+      if(this.pqrs == "") {
+        document.getElementById("pqrs").focus();
+      }
+      else if(this.paciente_rad == "") {
         document.getElementById("paciente_rad").focus();
       }
       else if(this.tpdocumento ==  ""){
@@ -856,6 +868,11 @@ export default {
         document.getElementById("descripcion").focus();
       }
       else {
+        //METODO ENCARGADO DE ENVIAR EL EMAIL AL CORREO
+        this.enviarEmail();
+        $("#enviar").attr("disabled", true);
+        $(".cargando").attr("hidden", false);
+        //PETICION AL CONTROLADOR PARA AGREGAR EL PQRSF A LA BASE DE DATOS
         this.axios.post(url, formdata, {'content-type': 'multipart/form-data'})
         .then(function (response) {
 
@@ -863,6 +880,8 @@ export default {
           $(".msjsuccess").html(respuesta);
           $("#modal-notificacion").modal("show");
           $("#enviar").attr("disabled", false);
+          $(".cargando").attr("hidden", true);
+
         })
         .catch(function (error) {
 

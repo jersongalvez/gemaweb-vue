@@ -240,7 +240,7 @@ export default {
         $("#container-pdf").attr("hidden", false);
       })
       .catch(error => {
-        alert("Aun no hay una respuesta a su solicitud");
+        $("#estado1").html("SOLICITUD EN PROCESO");
       })
     }
   },
