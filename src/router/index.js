@@ -6,6 +6,7 @@ import BuscarPqrs from '../views/prestadores/BuscarPqrs'
 //IMPORTACION DE ARCHIVOS PARA LA PLATAFORMA GEMAWEB
 import Login from '../views/gemaweb/Login'
 import Inicio from '../views/gemaweb/Inicio'
+import RecuperarContrasena from '../views/gemaweb/RecuperarContrasena'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +34,11 @@ export default new Router({
         path: '/gemaweb/login',
         name: 'Login',
         component: Login
+      },
+      {
+        path: '/gemaweb/recuperarcontrasena',
+        name: 'RecuperarContrasena',
+        component: RecuperarContrasena
       },
       {
         path: '/gemaweb/inicio',

@@ -1,13 +1,13 @@
 <template>
 <div class="bg-default">
   <div class="main-content">
-    <div class="header bg-gradient-info py-7 py-lg-8">
+    <div class="header bg-gradient-success py-7 py-lg-8">
       <div class="container">
         <div class="header-body text-center mb-6">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
               <img src="http://192.168.20.240/gemaweb/public/img/logo.png" class="img-fluid" width="80px;">
-              <h1 class="text-white mt-2">GEMAWEB EPS - INDIGENA</h1>
+              <h1 class="text-white mt-2">GEMAWEB EPSI</h1>
               <p class="text-lead text-white text-capitalize">plataforma gemaweb Pijaos salud EPSI</p>
             </div>
           </div>
@@ -24,7 +24,9 @@
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="card-header bg-transparent pb-4">
-              <div class="text-muted text-center mt-2 mb-3"><small>Iniciar sesión</small></div>
+              <div class="text-muted text-center mt-2 mb-3 text-uppercase">
+                <h4> Iniciar sesión</h4>
+              </div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4 font-weight-bold">
@@ -54,17 +56,19 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-info my-4">Ingresar</button>
+                  <button type="button" class="btn btn-default my-4">Ingresar</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light"><small>Olvido su contraseña?</small></a>
+              <router-link  to="/gemaweb/recuperarcontrasena" class="light">
+              <small>Olvido su contraseña?</small>
+              </router-link>
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Solicitar usuario</small></a>
+              <a href="mailto:jerson.galvez@pijaossalud.com.co?Subject=Solicitar Usuario Para la Plataforma Gemaweb." target="_blank"  class="text-light"><small>Solicitar usuario</small></a>
             </div>
             <br><br><br>
           </div>
@@ -84,3 +88,9 @@ export default {
 //   }
 }
 </script>
+
+<style lang="">
+ .color-verde {
+   background-color: #28943f !important;
+ }
+</style>
