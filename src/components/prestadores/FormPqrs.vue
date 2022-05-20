@@ -28,7 +28,7 @@
                   id="pqrs"
                   v-model="pqrs"
                 >
-                  <option value="">seleccione</option>
+                  <option value="">SELECCIONE</option>
                   <option value="PETICION">Petición</option>
                   <option value="QUEJA">Queja</option>
                   <option value="RECLAMO">Reclamo</option>
@@ -318,7 +318,7 @@
                     class="form-control form-control-sm"
                     v-model="departamento"
                   >
-                    <option value="">SELECCIONAR</option>
+                    <option value="">SELECCIONE</option>
                     <option
                       v-for="(departamento, index) in departamentos"
                       :key="index"
@@ -337,7 +337,7 @@
                     class="form-control form-control-sm"
                     v-model="municipio"
                   >
-                    <option value="">SELECCIONAR</option>
+                    <option value="">SELECCIONE</option>
                     <option
                       v-for="(municipio, index) in municipios"
                       :key="index"
@@ -646,7 +646,6 @@ export default {
      terminos: '',
      checkeps: '',
      checkips: ''
-
     }
   },
   methods: {
@@ -815,9 +814,10 @@ export default {
       formdata.append('telefono', this.telefono);
       formdata.append('correo', this.correo);
       formdata.append('area', this.area.text);
+      formdata.append('cod_area', this.area.id);
       formdata.append('ips', this.prestador.id);
       formdata.append('descripcion', this.descripcion);
-     
+
       //VALIDA QUE LOS CAMPOS REQUERIDOS NO ESTEN VACIOS
       if(this.pqrs == "") {
         document.getElementById("pqrs").focus();

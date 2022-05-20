@@ -7,7 +7,7 @@
         <div class="col-md-5">
           <h4 class="text-uppercase">Consulta tu Solicitud </h4>
         </div>
-        <div class="col-md-2 offset-md-5 text-danger">
+        <div class="col-md-4 offset-md-3 text-danger">
           <h3 class="font-weight-bold text-uppercase text-danger" id="estado1"></h3>
         </div>
       </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label>Correo electronico</label>
+            <label>Correo electrónico</label>
             <input
               type="text"
               id="correo1"
@@ -155,7 +155,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label>Gestion</label>
+            <label>Gestión</label>
             <textarea
               id="respuesta1"
               class="form-control text-uppercase"
@@ -240,7 +240,7 @@ export default {
         $("#container-pdf").attr("hidden", false);
       })
       .catch(error => {
-        $("#estado1").html("SOLICITUD EN PROCESO");
+        $("#estado1").html("SOLICITUD RADICADA");
       })
     }
   },
