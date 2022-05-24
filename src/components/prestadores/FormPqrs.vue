@@ -884,7 +884,8 @@ export default {
 
         })
         .catch(function (error) {
-
+          $("#enviar").attr("disabled", false);
+          $(".cargando").attr("hidden", true);
         })
       }
     }

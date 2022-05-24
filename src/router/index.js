@@ -31,7 +31,7 @@ export default new Router({
       RUTAS PARA LA ADMINISTRACION
     *****************************/
       {
-        path: '/gemaweb/login',
+        path: '/',
         name: 'Login',
         component: Login
       },

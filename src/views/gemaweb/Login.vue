@@ -1,12 +1,12 @@
 <template>
-<div class="bg-default">
+<div class="bg-default" >
   <div class="main-content">
     <div class="header bg-gradient-success py-7 py-lg-8">
       <div class="container">
-        <div class="header-body text-center mb-6">
+        <div class="header-body text-center mb-4">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <img src="http://192.168.20.240/gemaweb/public/img/logo.png" class="img-fluid" width="80px;">
+              <img src="https://saludmadreymujer.com/archivos/img/logo.png" class="img-fluid" width="80px;">
               <h1 class="text-white mt-2">GEMAWEB EPSI</h1>
               <p class="text-lead text-white text-capitalize">plataforma gemaweb Pijaos salud EPSI</p>
             </div>
@@ -19,7 +19,7 @@
         </svg>
       </div>
     </div>
-    <div class="container mt--8 ">
+    <div class="container mt--7 ">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
@@ -61,7 +61,7 @@
               </form>
             </div>
           </div>
-          <div class="row mt-3">
+          <div class="row mt-4">
             <div class="col-6">
               <router-link  to="/gemaweb/recuperarcontrasena" class="light">
               <small>Olvido su contraseña?</small>
@@ -90,7 +90,6 @@ export default {
 </script>
 
 <style lang="">
- .color-verde {
-   background-color: #28943f !important;
- }
+ 
+
 </style>
