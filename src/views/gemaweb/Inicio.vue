@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
       <div class="container-fluid">
@@ -19,21 +18,10 @@
         </a>
         <ul class="nav align-items-center d-md-none">
           <li class="nav-item dropdown">
-            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="ni ni-bell-55"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="https://saludmadreymujer.com/archivos/img/sketch.jpg">
+                  <img alt="Image placeholder" src="https://saludmadreymujer.com/archivos/img/sketch.jpg" />
                 </span>
               </div>
             </a>
@@ -120,17 +108,17 @@
             </a>
           </li> -->
         </ul>
-        <hr class="my-3">
-        <h6 class="navbar-heading ">Documentation</h6>
+        <hr class="my-4">
+        <h6 class="navbar-heading ">Documentación</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item active">
             <a class="nav-link" href="">
-              <i class="ni ni-spaceship"></i> Version 1.0.0
+              <i class="ni ni-spaceship"></i> Version 1.0.0.0
             </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="">
-              <i class="ni ni-palette"></i> Manual de usuario
+              <i class="ni ni-palette"></i> Manual de Usuario
             </a>
           </li>
           <li class="nav-item active">
@@ -190,7 +178,7 @@
         </ul>
       </div>
     </nav>
-    <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+    <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row">
@@ -199,7 +187,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Visitas web</h5>
                       <span class="h2 font-weight-bold mb-0">350,897</span>
                     </div>
                     <div class="col-auto">
@@ -220,7 +208,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Usuarios</h5>
                       <span class="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <div class="col-auto">
@@ -241,7 +229,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Peticiones</h5>
                       <span class="h2 font-weight-bold mb-0">924</span>
                     </div>
                     <div class="col-auto">
@@ -262,7 +250,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Permisos</h5>
                       <span class="h2 font-weight-bold mb-0">49,65%</span>
                     </div>
                     <div class="col-auto">
@@ -287,14 +275,17 @@
         <div class="col">
           <div class="card shadow border-0">
            <br>
+           <br>
+           <br>
+           <br><br>
           </div>
         </div>
       </div>
-      <footer class="footer">
+      <footer class="footer bg-white">
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-             2022 <a href="https://www.pijaossalud.com/" class="font-weight-bold ml-1" target="_blank">Pijaos Salud EPSI</a>
+            <div class="copyright text-center text-xl-left">
+              Copyright © 2022 <a href="https://www.pijaossalud.com/" class="font-weight-bold ml-1" target="_blank">Pijaos Salud EPSI</a>
             </div>
           </div>
         </div>
