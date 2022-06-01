@@ -19,7 +19,7 @@
         </svg>
       </div>
     </div>
-    <div class="container mt--7 ">
+    <div class="container mt--7">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
@@ -68,7 +68,15 @@
               </router-link>
             </div>
             <div class="col-6 text-right">
-              <a href="mailto:jerson.galvez@pijaossalud.com.co?Subject=Solicitar Usuario Para la Plataforma Gemaweb." target="_blank"  class="text-light"><small>Solicitar usuario</small></a>
+              <a
+                href="mailto:jerson.galvez@pijaossalud.com.co?Subject=Solicitar Usuario Para la Plataforma Gemaweb."
+                target="_blank"
+                class="text-light"
+              >
+                <small>
+                  Solicitar usuario
+                </small>
+              </a>
             </div>
             <br><br><br>
           </div>
@@ -79,17 +87,9 @@
     </div>
 </template>
 <script>
-// import  Argon from  "public/css/argon-dashboard.min.css";
-// Vue.use(Argon);
+
 export default {
   name: 'Login',
-//   components: {
 
-//   }
 }
 </script>
-
-<style lang="">
- 
-
-</style>

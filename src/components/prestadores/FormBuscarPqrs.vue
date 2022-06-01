@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <div class="container">
@@ -168,13 +166,15 @@
       </div>
       <div class="row mt-3">
         <div class="col-md-12">
-          <table class="table table-stripped table-hover">
-            <thead>
-              <th class="h1 lead">Respuestas a la solicitud</th>
-            </thead>
-            <tbody id="consulta-result" class="text-uppercase">
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-stripped table-hover">
+              <thead>
+                <th class="h1 lead">Respuestas a la solicitud</th>
+              </thead>
+              <tbody id="consulta-result" class="text-uppercase">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div class="row mt-3" id="container-pdf" hidden>

@@ -3,12 +3,12 @@
     <Menu />
       <div class="main-content">
         <MenuSuperior />
-        <Estadisticas />
+        <NoEstadisticas />
         <div class="container-fluid mt--7">
           <div class="row">
             <div class="col">
               <div class="card shadow border-0">
-                <!-- ACA VA EL CONTENIDO  -->
+                <FormCancer />
               </div>
             </div>
           </div>
@@ -21,18 +21,17 @@
 </template>
 <script>
 import Footer from '@/components/gemaweb/Footer';
-import Estadisticas from '@/components/gemaweb/Estadisticas';
 import NoEstadisticas from '@/components/gemaweb/NoEstadisticas';
 import MenuSuperior from '@/components/gemaweb/MenuSuperior';
 import Menu from '@/components/gemaweb/Menu';
-
+import FormCancer from '@/components/gemaweb/FormCancer';
 export default {
-  name: 'Inicio',
+  name: 'Usuarios',
   components: {
-    Estadisticas,
     NoEstadisticas,
     MenuSuperior,
     Menu,
+    FormCancer,
     Footer
   }
 }
